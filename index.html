@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 350px;
+    }
+    h1 {
+      margin-bottom: 15px;
+      color: #38bdf8;
+    }
+    button {
+      background: #38bdf8;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0ea5e9;
+    }
+    .result {
+      margin-top: 15px;
+      font-size: 15px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>IP Checker</h1>
+  <button onclick="getIP()">Check My IP</button>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function getIP() {
+  fetch("https://api.ipify.org?format=json")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("result").innerHTML =
+        "Your IP Address:<br><b>" + data.ip + "</b>";
+    })
+    .catch(() => {
+      document.getElementById("result").innerText = "Error fetching IP";
+    });
+}
+</script>
+
+</body>
+</html>
